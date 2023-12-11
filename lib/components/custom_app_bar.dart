@@ -1,3 +1,4 @@
+import 'package:arpha/screens/auth_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -22,8 +23,14 @@ class _CustomAppBarState extends State<CustomAppBar> {
       actions: [
         IconButton(
           onPressed: (){
-            FirebaseAuth.instance.signOut();
-            setState(() {});
+            FirebaseAuth.instance.signOut()
+            .then((res) {
+              Navigator.pushAndRemoveUntil(
+                context, 
+                MaterialPageRoute(builder: (context) => const AuthScreen()),
+                (route) => false
+              );
+            });
           },
           icon: const Icon(Icons.logout)
         ),
