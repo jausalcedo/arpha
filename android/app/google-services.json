@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "208376804778",
+    "project_id": "arpha-d4a14",
+    "storage_bucket": "arpha-d4a14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208376804778:android:42948d988dde56a55367d3",
+        "android_client_info": {
+          "package_name": "com.example.arpha"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXhJOCnrr4UPgFIS12FJ3LynDAmZSCl4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
