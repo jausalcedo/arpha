@@ -35,11 +35,11 @@ class _LoginScreenState extends State<LoginScreen> {
         email: emailInput.text,
         password: passwordInput.text
       );
+      Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       showErrorDialog(e.code);
     }
-    Navigator.pop(context);
   }
 
   void showErrorDialog(String errorMessage) {
@@ -110,18 +110,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         CustomTextField(controller: passwordInput, obscureText: true),
                         const Gap(10),
           
-                        // Forgot password
+                        // forgot password
                         const Text("Forgot password?"),
                         const Gap(20),
           
-                        // Login button
+                        // login button
                         CustomTextButton(
                           signInTapped: signIn,
                           text: "Login",
                         ),
                         const Gap(20),
           
-                        // Not a member? Register Now
+                        // need an account? register here
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

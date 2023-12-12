@@ -1,6 +1,7 @@
 import 'package:arpha/components/app_drawer.dart';
 import 'package:arpha/components/custom_app_bar.dart';
 import 'package:arpha/screens/compatibility_checker_screen.dart';
+import 'package:arpha/screens/identify_screen.dart';
 import 'package:arpha/screens/learn_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,15 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset("assets/images/identify.png", width: 350,),
+                  GestureDetector(
+                    onTap:() => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const IdentifyScreen(),
+                      )
+                    ),
+                    child: Image.asset("assets/images/identify.png", width: 350,)
+                  ),
                   const Gap(10),
                   GestureDetector(
                     onTap: () => Navigator.push(

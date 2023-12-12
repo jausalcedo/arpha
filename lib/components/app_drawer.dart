@@ -1,4 +1,5 @@
 import 'package:arpha/screens/compatibility_checker_screen.dart';
+import 'package:arpha/screens/identify_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:arpha/screens/home_screen.dart';
 import 'package:arpha/screens/learn_screen.dart';
@@ -20,6 +21,15 @@ class AppDrawer extends StatelessWidget {
             ),
             leading: const Icon(Icons.home),
             title: const Text('Home'),
+          ),
+          ListTile(
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => const IdentifyScreen(),
+              ),
+            ),
+            leading: const Icon(Icons.search_rounded),
+            title: const Text('Identify'),
           ),
           ListTile(
             onTap: () => Navigator.of(context).push(
