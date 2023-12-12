@@ -54,7 +54,8 @@ class _LoginScreenState extends State<LoginScreen> {
             child: const Text("Try again.")
           )
         ],
-      ));
+      )
+    );
   }
 
   @override

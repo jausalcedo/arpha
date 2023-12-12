@@ -1,7 +1,7 @@
 import 'package:arpha/components/app_drawer.dart';
 import 'package:arpha/components/custom_app_bar.dart';
 import 'package:arpha/screens/compatibility_checker_screen.dart';
-import 'package:arpha/screens/identify_screen.dart';
+import 'package:arpha/screens/camera_screen.dart';
 import 'package:arpha/screens/learn_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                     onTap:() => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const IdentifyScreen(),
+                        builder: (context) => CameraScreen(),
                       )
                     ),
                     child: Image.asset("assets/images/identify.png", width: 350,)

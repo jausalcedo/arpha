@@ -1,0 +1,7 @@
+0 cpu
+1 fan
+2 gpu
+3 psu
+4 ram
+5 storage
+6 motherboard

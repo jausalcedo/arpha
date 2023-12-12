@@ -50,11 +50,14 @@ class ComponentCard extends StatelessWidget {
                         icon: const Icon(Icons.arrow_back)
                       ),
                       Center(
-                        child: Image(
-                          image: AssetImage(componentLearn.imagePath),
-                          height: 200,
-                          width: 200,
-                          fit: BoxFit.cover,
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.all(Radius.circular(10)),
+                          child: Image(
+                            image: AssetImage(componentLearn.imagePath),
+                            height: 200,
+                            width: 200,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       const Gap(10),
