@@ -67,13 +67,21 @@ flutter:
     - assets/images/receipt_bg.png
     - assets/images/study.png
     - assets/images/learn/bg2.jpg
-    - assets/images/learn/cpu.jpg
-    - assets/images/learn/fan.jpg
-    - assets/images/learn/gpu.jpg
-    - assets/images/learn/mobo.jpg
-    - assets/images/learn/psu.jpg
-    - assets/images/learn/ram.jpg
-    - assets/images/learn/storage.jpg
+    - assets/images/learn/CPU.png
+    - assets/images/learn/FAN.png
+    - assets/images/learn/GPU.png
+    - assets/images/learn/MOTHERBOARD.png
+    - assets/images/learn/PSU.png
+    - assets/images/learn/RAM.png
+    - assets/images/learn/STORAGE.png
+    - assets/images/quiz/CPU.png
+    - assets/images/quiz/FAN.png
+    - assets/images/quiz/GPU.png
+    - assets/images/quiz/MOTHERBOARD.png
+    - assets/images/quiz/PSU.png
+    - assets/images/quiz/RAM.png
+    - assets/images/quiz/STORAGE.png
+    - assets/images/quiz/ALL.png
     - assets/object_detection/model.tflite
     - assets/object_detection/labels.txt
     - assets/object_detection/models/cpu.glb

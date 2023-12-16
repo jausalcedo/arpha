@@ -1,13 +1,8 @@
 import 'dart:io';
 
 import 'package:arpha/components/custom_app_bar.dart';
-import 'package:arpha/screens/model_view_screens/cpu_model_screen.dart';
-import 'package:arpha/screens/model_view_screens/fan_model_screen.dart';
-import 'package:arpha/screens/model_view_screens/gpu_model_screen.dart';
-import 'package:arpha/screens/model_view_screens/motherboard_model_screen.dart';
-import 'package:arpha/screens/model_view_screens/psu_model_screen.dart';
-import 'package:arpha/screens/model_view_screens/ram_model_screen.dart';
-import 'package:arpha/screens/model_view_screens/storage_model_screen.dart';
+import 'package:arpha/components/custom_grid_tile.dart';
+import 'package:arpha/screens/learn_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -24,8 +19,8 @@ class ResultScreen extends StatefulWidget {
 
 class _ResultScreenState extends State<ResultScreen> {
   File? file;
-  late List<dynamic>? _recognitions;
-  String label = "";
+  var label = "";
+  var confidence = 0.0;
   String labelTrimmed = "";
   String source = "";
 
@@ -56,9 +51,9 @@ class _ResultScreenState extends State<ResultScreen> {
       imageStd: 127.5
     );
     setState(() {
-      _recognitions = recognitions;
-      label = _recognitions![0]['label'];
-      labelTrimmed = label.substring(1);
+      label = (recognitions![0]['label'].substring(2));
+      confidence = recognitions[0]['confidence'] * 100.0;
+      print("$label at $confidence% confidence");
     });
   }
 
@@ -78,49 +73,64 @@ class _ResultScreenState extends State<ResultScreen> {
               child: Image.file(picture)
             ),
           ),
-          Text("Component: $labelTrimmed", style: const TextStyle(fontWeight: FontWeight.bold)),
-          Text("Confidence Level: ${n.format(_recognitions![0]['confidence'] * 100)}%"),
-          ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(Colors.blue[700])
+          confidence < 90.0 ? Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text("Low confidence. Please try again."),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text("Try Again")
+              )
+            ],
+          ) : Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              children: [
+                Text(
+                  "Component: ${label.toUpperCase()}",
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+                Text(
+                  "Confidence: ${confidence.toStringAsFixed(2)}%",
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                TextButton(
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(Colors.purple),
+                    foregroundColor: MaterialStatePropertyAll(Colors.white)
+                  ),
+                  onPressed: (){},
+                  child: const Text("View in AR")
+                ),
+                SizedBox(
+                  height: MediaQuery.sizeOf(context).width / 2,
+                  child: GridView(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 5
+                    ),
+                    children: [
+                      const CustomGridTile(
+                        source: "assets/images/quiz/ALL.png",
+                        screen: LearnScreen(),
+                        text: "Quiz: All"
+                      ),
+                      CustomGridTile(
+                        source: "assets/images/quiz/${label.toUpperCase()}.png",
+                        screen: const LearnScreen(),
+                        text: "Quiz: All"
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
-            onPressed: (){
-              if (double.parse(n.format(_recognitions![0]['confidence'] * 100)) >= 75) {
-                if (labelTrimmed == 'cpu') {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const CpuModelScreen())
-                  );
-                } else if (labelTrimmed == 'fan') {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const FanModelScreen())
-                  );
-                } else if (_recognitions![0]['label'].substring(1) == 'gpu') {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const GpuModelScreen())
-                  );
-                } else if (labelTrimmed == 'motherboard') {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const MotherboardModelScreen())
-                  );
-                } else if (labelTrimmed == 'psu') {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const PsuModelScreen())
-                  );
-                } else if (labelTrimmed == 'ram') {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const RamModelScreen())
-                  );
-                } else if (labelTrimmed == 'storage') {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const StorageModelScreen())
-                  );
-                }
-              } else {
-                Navigator.pop(context);
-              }
-            },
-            child: Text(double.parse(n.format(_recognitions![0]['confidence'] * 100)) >= 75 ? "View in AR" : "Try again", style: const TextStyle(color: Colors.white),)
           )
         ],
       )
