@@ -80,6 +80,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
+  bool obscurePassword = true;
+  bool obscureCPassword = true;
+
+  void togglePasswordVisibility() {
+    setState(() {
+      obscurePassword = !obscurePassword;
+    });
+  }
+
+  void toggleCPasswordVisibility() {
+    setState(() {
+      obscureCPassword = !obscureCPassword;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -145,7 +160,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             fontSize: 16
                           ),
                         ),
-                        CustomTextField(controller: passwordInput, obscureText: true),
+                        CustomTextField(
+                          controller: passwordInput,
+                          obscureText: obscurePassword,
+                          suffixIcon: IconButton(
+                            onPressed: togglePasswordVisibility,
+                            icon: Icon(obscurePassword ? Icons.visibility : Icons.visibility_off)
+                          )
+                        ),
                         const Gap(10),
 
                         // confirm password input field
@@ -155,7 +177,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             fontSize: 16
                           ),
                         ),
-                        CustomTextField(controller: confirmPasswordInput, obscureText: true),
+                        CustomTextField(
+                          controller: confirmPasswordInput,
+                          obscureText: obscureCPassword,
+                          suffixIcon: IconButton(
+                            onPressed: toggleCPasswordVisibility,
+                            icon: Icon(obscureCPassword ? Icons.visibility : Icons.visibility_off)
+                          )
+                        ),
                         const Gap(20),
           
                         // login button

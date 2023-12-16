@@ -23,6 +23,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final passwordInput = TextEditingController();
 
+  bool obscurePassword = true;
+
+  void togglePasswordVisibility() {
+    setState(() {
+      obscurePassword = !obscurePassword;
+    });
+  }
+
   void signIn() async {
     showDialog(
       context: context,
@@ -108,7 +116,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontSize: 16
                           ),
                         ),
-                        CustomTextField(controller: passwordInput, obscureText: true),
+                        CustomTextField(
+                          controller: passwordInput,
+                          obscureText: obscurePassword,
+                          suffixIcon: IconButton(
+                            onPressed: togglePasswordVisibility,
+                            icon: Icon(obscurePassword ? Icons.visibility : Icons.visibility_off)
+                          )
+                        ),
                         const Gap(10),
           
                         // forgot password

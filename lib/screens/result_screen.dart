@@ -1,8 +1,7 @@
 import 'dart:io';
 
 import 'package:arpha/components/custom_app_bar.dart';
-import 'package:arpha/components/custom_grid_tile.dart';
-import 'package:arpha/screens/learn_screen.dart';
+import 'package:arpha/components/quiz_grid_tile.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -70,7 +69,11 @@ class _ResultScreenState extends State<ResultScreen> {
         children: [
           Expanded(
             child: Center(
-              child: Image.file(picture)
+              child: Image.file(
+                picture,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              )
             ),
           ),
           confidence < 90.0 ? Column(
@@ -116,15 +119,11 @@ class _ResultScreenState extends State<ResultScreen> {
                       mainAxisSpacing: 5
                     ),
                     children: [
-                      const CustomGridTile(
+                      const QuizGridTile(
                         source: "assets/images/quiz/ALL.png",
-                        screen: LearnScreen(),
-                        text: "Quiz: All"
                       ),
-                      CustomGridTile(
+                      QuizGridTile(
                         source: "assets/images/quiz/${label.toUpperCase()}.png",
-                        screen: const LearnScreen(),
-                        text: "Quiz: All"
                       ),
                     ],
                   ),
