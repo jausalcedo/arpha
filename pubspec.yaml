@@ -86,13 +86,13 @@ flutter:
     - assets/images/quiz/ALL.png
     - assets/object_detection/model.tflite
     - assets/object_detection/labels.txt
-    - assets/object_detection/models/cpu.glb
-    - assets/object_detection/models/fan.glb
-    - assets/object_detection/models/gpu.glb
-    - assets/object_detection/models/motherboard.glb
-    - assets/object_detection/models/psu.glb
-    - assets/object_detection/models/ram.glb
-    - assets/object_detection/models/storage.glb
+    - assets/object_detection/identify/gpu_identify.glb
+    - assets/object_detection/identify/ram.glb
+    - assets/object_detection/identify/cpu.glb
+    - assets/object_detection/identify/fan.glb
+    - assets/object_detection/identify/motherboard.glb
+    - assets/object_detection/identify/psu.glb
+    - assets/object_detection/identify/storage.glb
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

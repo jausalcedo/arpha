@@ -2,6 +2,13 @@ import 'dart:io';
 
 import 'package:arpha/components/custom_app_bar.dart';
 import 'package:arpha/components/for_quiz/quiz_grid_tile.dart';
+import 'package:arpha/screens/identify/model_view/cpu_model_screen.dart';
+import 'package:arpha/screens/identify/model_view/fan_model_screen.dart';
+import 'package:arpha/screens/identify/model_view/gpu_model_screen.dart';
+import 'package:arpha/screens/identify/model_view/motherboard_model_screen.dart';
+import 'package:arpha/screens/identify/model_view/psu_model_screen.dart';
+import 'package:arpha/screens/identify/model_view/ram_model_screen.dart';
+import 'package:arpha/screens/identify/model_view/storage_model_screen.dart';
 import 'package:arpha/screens/quiz/quiz_all.dart';
 import 'package:arpha/screens/quiz/quiz_cpu.dart';
 import 'package:arpha/screens/quiz/quiz_fan.dart';
@@ -31,6 +38,8 @@ class _IdentifyResultScreenState extends State<IdentifyResultScreen> {
   String labelTrimmed = "";
   String source = "";
   Widget? screen;
+  Widget? arscreen;
+  Widget? learnscreen;
 
   NumberFormat n = NumberFormat.decimalPatternDigits(decimalDigits: 2);
 
@@ -71,18 +80,25 @@ class _IdentifyResultScreenState extends State<IdentifyResultScreen> {
 
     if (label == "motherboard") {
       screen = const QuizMotherboardScreen();
+      arscreen = const MotherboardModelScreen();
     } else if (label == "cpu") {
       screen = const QuizCPUScreen();
+      arscreen = const CpuModelScreen();
     } else if (label == "ram") {
       screen = const QuizRAMScreen();
+      arscreen = const RamModelScreen();
     } else if (label == "psu") {
       screen = const QuizPSUScreen();
+      arscreen = const PsuModelScreen();
     } else if (label == "storage") {
       screen = const QuizStorageScreen();
+      arscreen = const StorageModelScreen();
     } else if (label == "fan") {
       screen = const QuizFanScreen();
+      arscreen = const FanModelScreen();
     } else if (label == "gpu") {
       screen = const QuizGPUScreen();
+      arscreen = const GpuModelScreen();
     }
 
     return Scaffold(
@@ -132,7 +148,8 @@ class _IdentifyResultScreenState extends State<IdentifyResultScreen> {
                     backgroundColor: MaterialStatePropertyAll(Colors.purple),
                     foregroundColor: MaterialStatePropertyAll(Colors.white)
                   ),
-                  onPressed: (){},
+                  onPressed: () => Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => arscreen ?? const Text("Something went wrong")), (route) => false),
                   child: const Text("View in AR")
                 ),
                 SizedBox(

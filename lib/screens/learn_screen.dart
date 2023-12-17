@@ -42,13 +42,14 @@ class _LearnScreenState extends State<LearnScreen> {
                 ),
               ),
               Expanded(
-                child: ListView.builder(
+                child: GridView.builder(
                   itemCount: componentLearnList.length,
-                  itemBuilder: (context, index) => ComponentCard(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                  itemBuilder: (_, index) => ComponentCard(
                     componentLearn: componentLearnList[index]
-                  )
-                )
-              )
+                  ),
+                ),
+              ),
             ],
           ),
         ),
