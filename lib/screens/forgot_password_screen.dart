@@ -62,11 +62,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             const Text("Receive an email to reset your password."),
             const Gap(20),
             const Text(
-              "Password",
+              "Enter your email",
               style: TextStyle(
                 fontSize: 16
               ),
             ),
+            const Gap(20),
             CustomTextField(
               controller: emailInput,
               obscureText: false,
@@ -76,9 +77,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   ? 'Enter a valid email'
                   : null,
             ),
+            const Gap(20),
             CustomTextButton(
               signInTapped: resetPassword,
-              text: "Reset Password"
+              text: "Send Reset Password Email Link"
             )
           ],
         ),
