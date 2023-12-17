@@ -1,7 +1,7 @@
 import 'package:arpha/components/app_drawer.dart';
 import 'package:arpha/components/custom_app_bar.dart';
 import 'package:arpha/main.dart';
-import 'package:arpha/screens/result_screen.dart';
+import 'package:arpha/screens/identify/identify_result_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
@@ -71,7 +71,7 @@ class _CameraScreenState extends State<CameraScreen> {
                         XFile file = await controller.takePicture();
                         // ignore: use_build_context_synchronously
                         Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => ResultScreen(file))
+                          MaterialPageRoute(builder: (context) => IdentifyResultScreen(file))
                         );
                       } on CameraException catch (e) {
                         debugPrint("Error occured while taking picture : $e");

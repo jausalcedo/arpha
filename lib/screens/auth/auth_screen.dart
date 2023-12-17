@@ -1,5 +1,5 @@
-import 'package:arpha/screens/login_or_register_screen.dart';
-import 'package:arpha/screens/verify_email_screen.dart';
+import 'package:arpha/screens/auth/login_or_register_screen.dart';
+import 'package:arpha/screens/auth/verify_email_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

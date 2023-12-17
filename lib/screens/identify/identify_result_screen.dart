@@ -7,16 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tflite_v2/tflite_v2.dart';
 
-class ResultScreen extends StatefulWidget {
-  const ResultScreen(this.image, {super.key});
+class IdentifyResultScreen extends StatefulWidget {
+  const IdentifyResultScreen(this.image, {super.key});
 
   final XFile image;
 
   @override
-  State<ResultScreen> createState() => _ResultScreenState();
+  State<IdentifyResultScreen> createState() => _IdentifyResultScreenState();
 }
 
-class _ResultScreenState extends State<ResultScreen> {
+class _IdentifyResultScreenState extends State<IdentifyResultScreen> {
   File? file;
   var label = "";
   var confidence = 0.0;

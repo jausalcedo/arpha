@@ -4,7 +4,7 @@ import 'package:arpha/components/custom_text_button.dart';
 import 'package:arpha/components/custom_text_field.dart';
 import 'package:arpha/helpers/utils.dart';
 import 'package:arpha/main.dart';
-import 'package:arpha/screens/forgot_password_screen.dart';
+import 'package:arpha/screens/auth/forgot_password_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
