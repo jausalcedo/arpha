@@ -1,7 +1,15 @@
 import 'dart:io';
 
 import 'package:arpha/components/custom_app_bar.dart';
-import 'package:arpha/components/quiz_grid_tile.dart';
+import 'package:arpha/components/for_quiz/quiz_grid_tile.dart';
+import 'package:arpha/screens/quiz/quiz_all.dart';
+import 'package:arpha/screens/quiz/quiz_cpu.dart';
+import 'package:arpha/screens/quiz/quiz_fan.dart';
+import 'package:arpha/screens/quiz/quiz_gpu.dart';
+import 'package:arpha/screens/quiz/quiz_motherboard.dart';
+import 'package:arpha/screens/quiz/quiz_psu.dart';
+import 'package:arpha/screens/quiz/quiz_ram.dart';
+import 'package:arpha/screens/quiz/quiz_storage.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -22,6 +30,7 @@ class _IdentifyResultScreenState extends State<IdentifyResultScreen> {
   var confidence = 0.0;
   String labelTrimmed = "";
   String source = "";
+  Widget? screen;
 
   NumberFormat n = NumberFormat.decimalPatternDigits(decimalDigits: 2);
 
@@ -59,6 +68,22 @@ class _IdentifyResultScreenState extends State<IdentifyResultScreen> {
   @override
   Widget build(BuildContext context) {
     File picture = File(widget.image.path);
+
+    if (label == "motherboard") {
+      screen = const QuizMotherboardScreen();
+    } else if (label == "cpu") {
+      screen = const QuizCPUScreen();
+    } else if (label == "ram") {
+      screen = const QuizRAMScreen();
+    } else if (label == "psu") {
+      screen = const QuizPSUScreen();
+    } else if (label == "storage") {
+      screen = const QuizStorageScreen();
+    } else if (label == "fan") {
+      screen = const QuizFanScreen();
+    } else if (label == "gpu") {
+      screen = const QuizGPUScreen();
+    }
 
     return Scaffold(
       appBar: const PreferredSize(
@@ -121,9 +146,11 @@ class _IdentifyResultScreenState extends State<IdentifyResultScreen> {
                     children: [
                       const QuizGridTile(
                         source: "assets/images/quiz/ALL.png",
+                        screen: QuizAllScreen(),
                       ),
                       QuizGridTile(
                         source: "assets/images/quiz/${label.toUpperCase()}.png",
+                        screen: screen,
                       ),
                     ],
                   ),

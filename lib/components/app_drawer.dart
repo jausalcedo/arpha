@@ -1,5 +1,8 @@
+import 'package:arpha/screens/auth/auth_screen.dart';
 import 'package:arpha/screens/compatibility_checker_screen.dart';
-import 'package:arpha/screens/camera_screen.dart';
+import 'package:arpha/screens/identify/camera_screen.dart';
+import 'package:arpha/screens/quiz/quiz_home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:arpha/screens/home_screen.dart';
 import 'package:arpha/screens/learn_screen.dart';
@@ -49,9 +52,26 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.checklist_rounded),
             title: const Text('Check Compatibility'),
           ),
-          const ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Account'),
+          ListTile(
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => const QuizHomeScreen(),
+              ),
+            ),
+            leading: const Icon(Icons.quiz_outlined),
+            title: const Text('Quiz'),
+          ),
+          ListTile(
+            onTap: () => FirebaseAuth.instance.signOut()
+              .then((res) {
+                Navigator.pushAndRemoveUntil(
+                  context, 
+                  MaterialPageRoute(builder: (context) => const AuthScreen()),
+                  (route) => false
+                );
+              }),
+            leading: const Icon(Icons.logout),
+            title: const Text('Logout'),
           ),
         ],
       ),

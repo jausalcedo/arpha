@@ -7,14 +7,14 @@ import 'package:arpha/helpers/db_connect.dart';
 import 'package:arpha/models/question_model.dart';
 import 'package:flutter/material.dart';
 
-class QuizRAMScreen extends StatefulWidget {
-  const QuizRAMScreen({Key? key}) : super(key: key);
+class QuizStorageScreen extends StatefulWidget {
+  const QuizStorageScreen({Key? key}) : super(key: key);
 
   @override
-  QuizRAMScreenState createState() => QuizRAMScreenState();
+  QuizStorageScreenState createState() => QuizStorageScreenState();
 }
 
-class QuizRAMScreenState extends State<QuizRAMScreen> {
+class QuizStorageScreenState extends State<QuizStorageScreen> {
   var db = DBconnect();
   late Future<List<Question>> _questions;
   late List<Question> extractedData;
@@ -61,6 +61,7 @@ class QuizRAMScreenState extends State<QuizRAMScreen> {
 
   void _showDurationDialog() {
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text("Select Quiz Duration"),
@@ -240,24 +241,34 @@ class QuizRAMScreenState extends State<QuizRAMScreen> {
             return Scaffold(
               backgroundColor: background,
               appBar: AppBar(
-                title: const Text('Quiz: All'),
-                backgroundColor: background,
-                shadowColor: Colors.transparent,
-                actions: [
-                  const SizedBox(width: 50,),
-                  Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Text(
-                      'Time: $_timerDuration s',
-                      style: const TextStyle(fontSize: 18.0),
+                title: Row(
+                  children: [
+                    const Text(
+                      'Quiz: Storage',
+                      style: TextStyle(
+                        fontSize: 17
+                      ),
                     ),
-                  ),
-                ],
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Text(
+                        'Time: $_timerDuration s',
+                        style: const TextStyle(
+                          fontSize: 17.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                backgroundColor: background,
+                foregroundColor: Colors.white,
+                shadowColor: Colors.transparent,
               ),
               body: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Column(
+                child: ListView(
                   children: [
                     QuestionWidget(
                       indexAction: index,

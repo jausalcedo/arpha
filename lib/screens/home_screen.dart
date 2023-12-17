@@ -1,8 +1,9 @@
 import 'package:arpha/components/app_drawer.dart';
 import 'package:arpha/components/custom_app_bar.dart';
 import 'package:arpha/screens/compatibility_checker_screen.dart';
-import 'package:arpha/screens/camera_screen.dart';
+import 'package:arpha/screens/identify/camera_screen.dart';
 import 'package:arpha/screens/learn_screen.dart';
+import 'package:arpha/screens/quiz/quiz_home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -37,10 +38,10 @@ class HomeScreen extends StatelessWidget {
                     onTap:() => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CameraScreen(),
+                        builder: (context) => const CameraScreen(),
                       )
                     ),
-                    child: Image.asset("assets/images/identify.png", width: 350,)
+                    child: Image.asset("assets/images/identify.png", width: 350)
                   ),
                   const Gap(10),
                   GestureDetector(
@@ -50,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                         builder: (context) => const LearnScreen(),
                       )
                     ),
-                    child: Image.asset("assets/images/study.png", width: 450,)
+                    child: Image.asset("assets/images/study.png", width: 450)
                   ),
                   const Gap(10),
                   GestureDetector(
@@ -60,10 +61,18 @@ class HomeScreen extends StatelessWidget {
                         builder: (context) => const CompatibilityCheckerScreen(),
                       )
                     ),
-                    child: Image.asset("assets/images/check.png", width: 450,)
+                    child: Image.asset("assets/images/check.png", width: 450)
                   ),
                   const Gap(10),
-                  Image.asset("assets/images/quiz.png", width: 450,),
+                  GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const QuizHomeScreen(),
+                      )
+                    ),
+                    child: Image.asset("assets/images/quiz.png", width: 450)
+                  ),
                 ],
               ),
             ),

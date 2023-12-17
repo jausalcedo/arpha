@@ -62,6 +62,7 @@ class QuizAllScreenState extends State<QuizAllScreen> {
   void _showDurationDialog() {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (ctx) => AlertDialog(
         title: const Text("Select Quiz Duration"),
         content: SizedBox(
@@ -240,24 +241,34 @@ class QuizAllScreenState extends State<QuizAllScreen> {
             return Scaffold(
               backgroundColor: background,
               appBar: AppBar(
-                title: const Text('Quiz: All'),
-                backgroundColor: background,
-                shadowColor: Colors.transparent,
-                actions: [
-                  const SizedBox(width: 50,),
-                  Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Text(
-                      'Time: $_timerDuration s',
-                      style: const TextStyle(fontSize: 18.0),
+                title: Row(
+                  children: [
+                    const Text(
+                      'Quiz: All',
+                      style: TextStyle(
+                        fontSize: 17
+                      ),
                     ),
-                  ),
-                ],
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Text(
+                        'Time: $_timerDuration s',
+                        style: const TextStyle(
+                          fontSize: 17.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                backgroundColor: background,
+                foregroundColor: Colors.white,
+                shadowColor: Colors.transparent,
               ),
               body: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Column(
+                child: ListView(
                   children: [
                     QuestionWidget(
                       indexAction: index,
