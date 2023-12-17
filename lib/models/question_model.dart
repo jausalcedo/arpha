@@ -1,26 +1,16 @@
-class NoviceQuestion {
-  String question;
-  List<String> choices;
-  String answer;
+class Question {
+  final String id;
+  final String title;
+  final Map<String, bool> option;
 
-  NoviceQuestion({
-    required this.question,
-    required this.choices,
-    required this.answer
+  Question({
+    required this.id,
+    required this.title,
+    required this.option,
   });
+
+  @override
+  String toString() {
+    return 'Question(id: $id, title: $title, options: $option)';
+  }
 }
-
-class IntermediateQuestion {
-
-}
-
-NoviceQuestion one = NoviceQuestion(
-  question: "question",
-  choices: [
-    "A",
-    "B",
-    "C",
-    "D"
-  ],
-  answer: "answer",
-);
