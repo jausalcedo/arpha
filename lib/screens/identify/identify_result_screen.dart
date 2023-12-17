@@ -9,6 +9,7 @@ import 'package:arpha/screens/identify/model_view/motherboard_model_screen.dart'
 import 'package:arpha/screens/identify/model_view/psu_model_screen.dart';
 import 'package:arpha/screens/identify/model_view/ram_model_screen.dart';
 import 'package:arpha/screens/identify/model_view/storage_model_screen.dart';
+import 'package:arpha/screens/learn_screen.dart';
 import 'package:arpha/screens/quiz/quiz_all.dart';
 import 'package:arpha/screens/quiz/quiz_cpu.dart';
 import 'package:arpha/screens/quiz/quiz_fan.dart';
@@ -19,6 +20,7 @@ import 'package:arpha/screens/quiz/quiz_ram.dart';
 import 'package:arpha/screens/quiz/quiz_storage.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:tflite_v2/tflite_v2.dart';
 
@@ -152,6 +154,17 @@ class _IdentifyResultScreenState extends State<IdentifyResultScreen> {
                     MaterialPageRoute(builder: (context) => arscreen ?? const Text("Something went wrong")), (route) => false),
                   child: const Text("View in AR")
                 ),
+                const Gap(10),
+                TextButton(
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(Colors.purple),
+                    foregroundColor: MaterialStatePropertyAll(Colors.white)
+                  ),
+                  onPressed: () => Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => const LearnScreen()), (route) => false),
+                  child: const Text("Learn More")
+                ),
+                const Gap(10),
                 SizedBox(
                   height: MediaQuery.sizeOf(context).width / 2,
                   child: GridView(
