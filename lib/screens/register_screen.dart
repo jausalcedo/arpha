@@ -11,9 +11,9 @@ import 'package:gap/gap.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({
-    super.key,
+    Key? key,
     required this.onTap
-  });
+  }) : super(key: key);
 
   final Function()? onTap;
 
@@ -125,123 +125,126 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Card(
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        //welcome text
-                        const Center(
-                          child: Text(
-                            "Register",
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          //welcome text
+                          const Center(
+                            child: Text(
+                              "Register",
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold
+                              ),
                             ),
                           ),
-                        ),
-                        const Gap(10),
-
-                        //first name input field
-                        const Text(
-                          "First Name",
-                          style: TextStyle(
-                            fontSize: 16
+                          const Gap(10),
+                    
+                          //first name input field
+                          const Text(
+                            "First Name",
+                            style: TextStyle(
+                              fontSize: 16
+                            ),
                           ),
-                        ),
-                        CustomTextField(controller: firstNameInput, obscureText: false),
-                        const Gap(10),
-
-                        // last name input field
-                        const Text(
-                          "Last Name",
-                          style: TextStyle(
-                            fontSize: 16
+                          CustomTextField(controller: firstNameInput, obscureText: false),
+                          const Gap(10),
+                    
+                          // last name input field
+                          const Text(
+                            "Last Name",
+                            style: TextStyle(
+                              fontSize: 16
+                            ),
                           ),
-                        ),
-                        CustomTextField(controller: lastNameInput, obscureText: false),
-                        const Gap(10),
-
-                        // email input field
-                        const Text(
-                          "Email",
-                          style: TextStyle(
-                            fontSize: 16
+                          CustomTextField(controller: lastNameInput, obscureText: false),
+                          const Gap(10),
+                    
+                          // email input field
+                          const Text(
+                            "Email",
+                            style: TextStyle(
+                              fontSize: 16
+                            ),
                           ),
-                        ),
-                        CustomTextField(
-                          controller: emailInput,
-                          obscureText: false,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (email) =>
-                            email != null && !EmailValidator.validate(email)
-                              ? 'Enter a valid email'
-                              : null,
-                        ),
-                        const Gap(10),
-                        
-                        // password input field
-                        const Text(
-                          "Password",
-                          style: TextStyle(
-                            fontSize: 16
+                          CustomTextField(
+                            controller: emailInput,
+                            obscureText: false,
+                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                            validator: (email) =>
+                              email != null && !EmailValidator.validate(email)
+                                ? 'Enter a valid email'
+                                : null,
                           ),
-                        ),
-                        CustomTextField(
-                          controller: passwordInput,
-                          obscureText: obscurePassword,
-                          suffixIcon: IconButton(
-                            onPressed: togglePasswordVisibility,
-                            icon: Icon(obscurePassword ? Icons.visibility : Icons.visibility_off)
+                          const Gap(10),
+                          
+                          // password input field
+                          const Text(
+                            "Password",
+                            style: TextStyle(
+                              fontSize: 16
+                            ),
                           ),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (value) =>
-                            value != null && value.length < 6
-                              ? 'Enter min. 6 characters'
-                              : null,
-                        ),
-                        const Gap(10),
-
-                        // confirm password input field
-                        const Text(
-                          "Confirm Password",
-                          style: TextStyle(
-                            fontSize: 16
+                          CustomTextField(
+                            controller: passwordInput,
+                            obscureText: obscurePassword,
+                            suffixIcon: IconButton(
+                              onPressed: togglePasswordVisibility,
+                              icon: Icon(obscurePassword ? Icons.visibility : Icons.visibility_off)
+                            ),
+                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                            validator: (value) =>
+                              value != null && value.length < 6
+                                ? 'Enter min. 6 characters'
+                                : null,
                           ),
-                        ),
-                        CustomTextField(
-                          controller: confirmPasswordInput,
-                          obscureText: obscureCPassword,
-                          suffixIcon: IconButton(
-                            onPressed: toggleCPasswordVisibility,
-                            icon: Icon(obscureCPassword ? Icons.visibility : Icons.visibility_off)
-                          )
-                        ),
-                        const Gap(20),
-          
-                        // login button
-                        CustomTextButton(
-                          signInTapped: signUp,
-                          text: "Register",
-                        ),
-                        const Gap(20),
-          
-                        // already have an account? login
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text("Already have an account? "),
-                            GestureDetector(
-                              onTap: widget.onTap,
-                              child: Text(
-                                "Login here.",
-                                style: TextStyle(
-                                  color: Colors.blue[700],
-                                  fontWeight: FontWeight.bold
-                                ),  
-                              ),
+                          const Gap(10),
+                    
+                          // confirm password input field
+                          const Text(
+                            "Confirm Password",
+                            style: TextStyle(
+                              fontSize: 16
+                            ),
+                          ),
+                          CustomTextField(
+                            controller: confirmPasswordInput,
+                            obscureText: obscureCPassword,
+                            suffixIcon: IconButton(
+                              onPressed: toggleCPasswordVisibility,
+                              icon: Icon(obscureCPassword ? Icons.visibility : Icons.visibility_off)
                             )
-                          ],
-                        )
-                      ],
+                          ),
+                          const Gap(20),
+                              
+                          // login button
+                          CustomTextButton(
+                            signInTapped: signUp,
+                            text: "Register",
+                          ),
+                          const Gap(20),
+                              
+                          // already have an account? login
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text("Already have an account? "),
+                              GestureDetector(
+                                onTap: widget.onTap,
+                                child: Text(
+                                  "Login here.",
+                                  style: TextStyle(
+                                    color: Colors.blue[700],
+                                    fontWeight: FontWeight.bold
+                                  ),  
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
