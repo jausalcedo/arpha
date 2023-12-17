@@ -5,6 +5,8 @@ import 'package:arpha/components/for_quiz/result_box.dart';
 import 'package:arpha/constants/quiz_colors.dart';
 import 'package:arpha/helpers/db_connect.dart';
 import 'package:arpha/models/question_model.dart';
+import 'package:arpha/screens/home_screen.dart';
+import 'package:arpha/screens/quiz/quiz_home.dart';
 import 'package:flutter/material.dart';
 
 class QuizMotherboardScreen extends StatefulWidget {
@@ -206,11 +208,21 @@ class QuizMotherboardScreenState extends State<QuizMotherboardScreen> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(onPressed: (){}, child: const Text('Quiz Type')),
+                child: ElevatedButton(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const QuizHomeScreen())
+                  ),
+                  child: const Text('Quiz Type')
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(onPressed: (){}, child: const Text('Home')),
+                child: ElevatedButton(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => HomeScreen())
+                  ),
+                  child: const Text('Home')
+                ),
               ),
             ],
           ),
