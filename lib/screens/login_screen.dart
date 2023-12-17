@@ -2,6 +2,9 @@
 
 import 'package:arpha/components/custom_text_button.dart';
 import 'package:arpha/components/custom_text_field.dart';
+import 'package:arpha/helpers/utils.dart';
+import 'package:arpha/main.dart';
+import 'package:arpha/screens/forgot_password_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -34,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void signIn() async {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) => const Center(
         child: CircularProgressIndicator()
       ),
@@ -43,27 +47,19 @@ class _LoginScreenState extends State<LoginScreen> {
         email: emailInput.text,
         password: passwordInput.text
       );
-      Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-      showErrorDialog(e.code);
+      Utils.showSnackBar(e.message);
     }
+
+    navigatorKey.currentState!.popUntil((route) => route.isFirst); 
   }
 
-  void showErrorDialog(String errorMessage) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text("Error"),
-        content: Text(errorMessage),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text("Try again.")
-          )
-        ],
-      )
-    );
+  @override
+  void dispose() {
+    emailInput.dispose();
+    passwordInput.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -127,7 +123,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         const Gap(10),
           
                         // forgot password
-                        const Text("Forgot password?"),
+                        GestureDetector(
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => const ForgotPasswordScreen())
+                          ),
+                          child: const Text("Forgot password?")
+                        ),
                         const Gap(20),
           
                         // login button

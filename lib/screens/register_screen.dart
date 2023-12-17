@@ -2,6 +2,9 @@
 
 import 'package:arpha/components/custom_text_button.dart';
 import 'package:arpha/components/custom_text_field.dart';
+import 'package:arpha/helpers/utils.dart';
+import 'package:arpha/main.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -19,13 +22,28 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final formKey = GlobalKey<FormState>();
   final firstNameInput = TextEditingController();
   final lastNameInput = TextEditingController();
   final emailInput = TextEditingController();
   final passwordInput = TextEditingController();
   final confirmPasswordInput = TextEditingController();
 
+  @override
+  void dispose() {
+    firstNameInput.dispose();
+    lastNameInput.dispose();
+    emailInput.dispose();
+    passwordInput.dispose();
+    confirmPasswordInput.dispose();
+
+    super.dispose();
+  }
+
   void signUp() async {
+    final isValid = formKey.currentState!.validate();
+    if (!isValid) return;
+
     showDialog(
       context: context,
       builder: (context) => const Center(
@@ -40,7 +58,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           email: emailInput.text,
           password: passwordInput.text
         );
-        Navigator.pop(context);
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
@@ -55,13 +72,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ],
         ));
       } else {
-        Navigator.pop(context);
         showErrorDialog("Passwords do not match.");
       }
     } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-      showErrorDialog(e.code);
+      Utils.showSnackBar(e.message);
     }
+
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
   void showErrorDialog(String errorMessage) {
@@ -150,7 +167,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             fontSize: 16
                           ),
                         ),
-                        CustomTextField(controller: emailInput, obscureText: false),
+                        CustomTextField(
+                          controller: emailInput,
+                          obscureText: false,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (email) =>
+                            email != null && !EmailValidator.validate(email)
+                              ? 'Enter a valid email'
+                              : null,
+                        ),
                         const Gap(10),
                         
                         // password input field
@@ -166,7 +191,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           suffixIcon: IconButton(
                             onPressed: togglePasswordVisibility,
                             icon: Icon(obscurePassword ? Icons.visibility : Icons.visibility_off)
-                          )
+                          ),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (value) =>
+                            value != null && value.length < 6
+                              ? 'Enter min. 6 characters'
+                              : null,
                         ),
                         const Gap(10),
 
