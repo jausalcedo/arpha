@@ -1,5 +1,5 @@
 import 'package:arpha/helpers/utils.dart';
-import 'package:arpha/screens/auth_screen.dart';
+import 'package:arpha/screens/auth/auth_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
