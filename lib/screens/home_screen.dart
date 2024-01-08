@@ -1,6 +1,6 @@
 import 'package:arpha/components/app_drawer.dart';
 import 'package:arpha/components/custom_app_bar.dart';
-import 'package:arpha/screens/compatibility_checker_screen.dart';
+import 'package:arpha/screens/compatibility_screen.dart';
 import 'package:arpha/screens/identify/camera_screen.dart';
 import 'package:arpha/screens/learn_screen.dart';
 import 'package:arpha/screens/quiz/quiz_home.dart';
@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const CompatibilityCheckerScreen(),
+                        builder: (context) => const CompatibilityScreen(),
                       )
                     ),
                     child: Image.asset("assets/images/check.png", width: 450)

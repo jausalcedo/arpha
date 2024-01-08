@@ -1,12 +1,12 @@
 import 'package:arpha/screens/auth/auth_screen.dart';
-import 'package:arpha/screens/compatibility_checker_screen.dart';
+import 'package:arpha/screens/build_history.dart';
+import 'package:arpha/screens/compatibility_screen.dart';
 import 'package:arpha/screens/identify/camera_screen.dart';
 import 'package:arpha/screens/quiz/quiz_home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:arpha/screens/home_screen.dart';
 import 'package:arpha/screens/learn_screen.dart';
-
  
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -46,11 +46,20 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) => const CompatibilityCheckerScreen(),
+                builder: (_) => const CompatibilityScreen(),
               ),
             ),
             leading: const Icon(Icons.checklist_rounded),
             title: const Text('Check Compatibility'),
+          ),
+          ListTile(
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => const BuildHistory(),
+              ),
+            ),
+            leading: const Icon(Icons.access_time_rounded),
+            title: const Text('PC Build History'),
           ),
           ListTile(
             onTap: () => Navigator.of(context).push(
