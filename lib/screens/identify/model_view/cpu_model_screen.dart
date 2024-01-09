@@ -17,7 +17,7 @@ class CpuModelScreen extends StatelessWidget {
       ),
       drawer: AppDrawer(),
       body: ModelViewer(
-        src: 'assets/object_detector/identify/cpu.glb',
+        src: 'assets/object_detection/identify/ram.glb',
         ar: true,
         autoRotate: true,
         disableZoom: true,

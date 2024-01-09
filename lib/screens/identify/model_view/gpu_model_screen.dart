@@ -17,7 +17,7 @@ class GpuModelScreen extends StatelessWidget {
       ),
       drawer: AppDrawer(),
       body: ModelViewer(
-        src: 'assets/object_detector/identify/gpu_identify.glb',
+        src: 'assets/object_detection/identify/gpu_identify.glb',
         ar: true,
         autoRotate: true,
         disableZoom: true,

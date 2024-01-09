@@ -17,7 +17,7 @@ class StorageModelScreen extends StatelessWidget {
       ),
       drawer: AppDrawer(),
       body: ModelViewer(
-        src: 'assets/object_detector/identify/storage.glb',
+        src: 'assets/object_detection/identify/storage.glb',
         ar: true,
         autoRotate: true,
         disableZoom: true,

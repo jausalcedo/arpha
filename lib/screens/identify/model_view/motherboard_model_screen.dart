@@ -17,7 +17,7 @@ class MotherboardModelScreen extends StatelessWidget {
       ),
       drawer: AppDrawer(),
       body: ModelViewer(
-        src: 'assets/object_detector/identify/motherboard.glb',
+        src: 'assets/object_detection/identify/motherboard.glb',
         ar: true,
         autoRotate: true,
         disableZoom: true,

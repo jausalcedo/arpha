@@ -17,7 +17,7 @@ class FanModelScreen extends StatelessWidget {
       ),
       drawer: AppDrawer(),
       body: ModelViewer(
-        src: 'assets/object_detector/identify/fan.glb',
+        src: 'assets/object_detection/identify/fan.glb',
         ar: true,
         autoRotate: true,
         disableZoom: true,
